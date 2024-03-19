@@ -36,11 +36,11 @@ jobs:
           free-disk-space: false
       - name: Generate Code Coverage Report
         run: make code-cov-report
-      - name: Upload Report to Codecov
-        uses: codecov/codecov-action@e0b68c6749509c5f83f984dd99a76a1c1a231044 # v4.0.1
-        with:
-          files: ./coverage.out
-          fail_ci_if_error: true
-          verbose: true
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      # - name: Upload Report to Codecov
+      #   uses: codecov/codecov-action@e0b68c6749509c5f83f984dd99a76a1c1a231044 # v4.0.1
+      #   with:
+      #     files: ./coverage.out
+      #     fail_ci_if_error: true
+      #     verbose: true
+      #   env:
+      #     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
