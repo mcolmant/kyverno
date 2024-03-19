@@ -14,12 +14,12 @@ GOOS                 ?= $(shell go env GOOS)
 GOARCH               ?= $(shell go env GOARCH)
 KOCACHE              ?= /tmp/ko-cache
 BUILD_WITH           ?= ko
-KYVERNOPRE_IMAGE     := kyvernopre
-KYVERNO_IMAGE        := kyverno
-CLI_IMAGE            := kyverno-cli
-CLEANUP_IMAGE        := cleanup-controller
-REPORTS_IMAGE        := reports-controller
-BACKGROUND_IMAGE     := background-controller
+KYVERNOPRE_IMAGE     := kyverno/kyvernopre
+KYVERNO_IMAGE        := kyverno/kyverno
+CLI_IMAGE            := kyverno/kyverno-cli
+CLEANUP_IMAGE        := kyverno/cleanup-controller
+REPORTS_IMAGE        := kyverno/reports-controller
+BACKGROUND_IMAGE     := kyverno/background-controller
 REPO_KYVERNOPRE      := $(REGISTRY)/$(REPO)/$(KYVERNOPRE_IMAGE)
 REPO_KYVERNO         := $(REGISTRY)/$(REPO)/$(KYVERNO_IMAGE)
 REPO_CLI             := $(REGISTRY)/$(REPO)/$(CLI_IMAGE)
@@ -837,7 +837,7 @@ code-cov-report: test-clean ## Generate code coverage report
 #############
 
 TEST_GIT_BRANCH ?= main
-TEST_GIT_REPO   ?= https://github.com/kyverno/policies
+TEST_GIT_REPO   ?= https://github.com/mcolmant/kyverno-policies
 
 .PHONY: test-cli
 test-cli: test-cli-policies test-cli-local ## Run all CLI tests
