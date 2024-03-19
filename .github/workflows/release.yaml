@@ -5,7 +5,7 @@ permissions: {}
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
 
 jobs:
   release-images:
@@ -31,11 +31,11 @@ jobs:
       - name: Run Trivy vulnerability scanner in repo mode
         uses: aquasecurity/trivy-action@fbd16365eb88e12433951383f5e99bd901fc618f # v0.12.0
         with:
-          scan-type: 'fs'
+          scan-type: "fs"
           ignore-unfixed: true
-          format: 'sarif'
-          output: 'trivy-results.sarif'
-          severity: 'CRITICAL,HIGH'
+          format: "sarif"
+          output: "trivy-results.sarif"
+          severity: "CRITICAL,HIGH"
       - name: Install Cosign
         uses: sigstore/cosign-installer@11086d25041f77fe8fe7b9ea4e48e3b9192b8f19 # v3.1.2
       - name: Publish kyverno
@@ -48,7 +48,7 @@ jobs:
           registry-password: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository_owner }}
           version: ${{ github.ref_name }}
-          sign-image: true
+          sign-image: false
           sbom-name: kyverno
           sbom-repository: ghcr.io/${{ github.repository_owner }}/sbom
           signature-repository: ghcr.io/${{ github.repository_owner }}/signatures
@@ -63,7 +63,7 @@ jobs:
           registry-password: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository_owner }}
           version: ${{ github.ref_name }}
-          sign-image: true
+          sign-image: false
           sbom-name: kyverno-init
           sbom-repository: ghcr.io/${{ github.repository_owner }}/sbom
           signature-repository: ghcr.io/${{ github.repository_owner }}/signatures
@@ -78,7 +78,7 @@ jobs:
           registry-password: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository_owner }}
           version: ${{ github.ref_name }}
-          sign-image: true
+          sign-image: false
           sbom-name: background-controller
           sbom-repository: ghcr.io/${{ github.repository_owner }}/sbom
           signature-repository: ghcr.io/${{ github.repository_owner }}/signatures
@@ -93,7 +93,7 @@ jobs:
           registry-password: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository_owner }}
           version: ${{ github.ref_name }}
-          sign-image: true
+          sign-image: false
           sbom-name: cleanup-controller
           sbom-repository: ghcr.io/${{ github.repository_owner }}/sbom
           signature-repository: ghcr.io/${{ github.repository_owner }}/signatures
@@ -108,7 +108,7 @@ jobs:
           registry-password: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository_owner }}
           version: ${{ github.ref_name }}
-          sign-image: true
+          sign-image: false
           sbom-name: cli
           sbom-repository: ghcr.io/${{ github.repository_owner }}/sbom
           signature-repository: ghcr.io/${{ github.repository_owner }}/signatures
@@ -123,7 +123,7 @@ jobs:
           registry-password: ${{ secrets.GITHUB_TOKEN }}
           repository: ${{ github.repository_owner }}
           version: ${{ github.ref_name }}
-          sign-image: true
+          sign-image: false
           sbom-name: reports-controller
           sbom-repository: ghcr.io/${{ github.repository_owner }}/sbom
           signature-repository: ghcr.io/${{ github.repository_owner }}/signatures
@@ -132,9 +132,9 @@ jobs:
   generate-kyverno-provenance:
     needs: release-images
     permissions:
-      id-token: write   # To sign the provenance.
-      packages: write   # To upload assets to release.
-      actions: read     # To read the workflow path.
+      id-token: write # To sign the provenance.
+      packages: write # To upload assets to release.
+      actions: read # To read the workflow path.
     # NOTE: The container generator workflow is not officially released as GA.
     uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v1.9.0
     with:
@@ -147,9 +147,9 @@ jobs:
   generate-kyverno-init-provenance:
     needs: release-images
     permissions:
-      id-token: write   # To sign the provenance.
-      packages: write   # To upload assets to release.
-      actions: read     # To read the workflow path.
+      id-token: write # To sign the provenance.
+      packages: write # To upload assets to release.
+      actions: read # To read the workflow path.
     # NOTE: The container generator workflow is not officially released as GA.
     uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v1.9.0
     with:
@@ -162,9 +162,9 @@ jobs:
   generate-background-controller-provenance:
     needs: release-images
     permissions:
-      id-token: write   # To sign the provenance.
-      packages: write   # To upload assets to release.
-      actions: read     # To read the workflow path.
+      id-token: write # To sign the provenance.
+      packages: write # To upload assets to release.
+      actions: read # To read the workflow path.
     # NOTE: The container generator workflow is not officially released as GA.
     uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v1.9.0
     with:
@@ -177,9 +177,9 @@ jobs:
   generate-cleanup-controller-provenance:
     needs: release-images
     permissions:
-      id-token: write   # To sign the provenance.
-      packages: write   # To upload assets to release.
-      actions: read     # To read the workflow path.
+      id-token: write # To sign the provenance.
+      packages: write # To upload assets to release.
+      actions: read # To read the workflow path.
     # NOTE: The container generator workflow is not officially released as GA.
     uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v1.9.0
     with:
@@ -192,9 +192,9 @@ jobs:
   generate-kyverno-cli-provenance:
     needs: release-images
     permissions:
-      id-token: write   # To sign the provenance.
-      packages: write   # To upload assets to release.
-      actions: read     # To read the workflow path.
+      id-token: write # To sign the provenance.
+      packages: write # To upload assets to release.
+      actions: read # To read the workflow path.
     # NOTE: The container generator workflow is not officially released as GA.
     uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v1.9.0
     with:
@@ -207,9 +207,9 @@ jobs:
   generate-reports-controller-provenance:
     needs: release-images
     permissions:
-      id-token: write   # To sign the provenance.
-      packages: write   # To upload assets to release.
-      actions: read     # To read the workflow path.
+      id-token: write # To sign the provenance.
+      packages: write # To upload assets to release.
+      actions: read # To read the workflow path.
     # NOTE: The container generator workflow is not officially released as GA.
     uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v1.9.0
     with:
@@ -256,7 +256,7 @@ jobs:
     permissions:
       contents: write # needed to write releases
       id-token: write # needed for keyless signing
-      packages: write # needed for ghcr access  
+      packages: write # needed for ghcr access
     steps:
       - name: Checkout
         uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac # v4.0.0
@@ -293,7 +293,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Push manifests to GHCR with Flux
         env:
-          CR_PAT_ARTIFACTS:  ${{ secrets.GITHUB_TOKEN }}
+          CR_PAT_ARTIFACTS: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -e
           mkdir -p config/.release-manifests
