@@ -5,8 +5,8 @@ permissions: {}
 on:
   push:
     branches:
-      - 'main'
-      - 'release*'
+      - "main"
+      - "release*"
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       packages: write
-      id-token: write 
+      id-token: write
     outputs:
       kyverno-digest: ${{ steps.publish-kyverno.outputs.digest }}
       kyverno-init-digest: ${{ steps.publish-kyverno-init.outputs.digest }}
@@ -36,11 +36,11 @@ jobs:
       - name: Run Trivy vulnerability scanner in repo mode
         uses: aquasecurity/trivy-action@fbd16365eb88e12433951383f5e99bd901fc618f # v0.12.0
         with:
-          scan-type: 'fs'
+          scan-type: "fs"
           ignore-unfixed: true
-          format: 'sarif'
-          output: 'trivy-results.sarif'
-          severity: 'CRITICAL,HIGH'
+          format: "sarif"
+          output: "trivy-results.sarif"
+          severity: "CRITICAL,HIGH"
       - name: Install Cosign
         uses: sigstore/cosign-installer@11086d25041f77fe8fe7b9ea4e48e3b9192b8f19 # v3.1.2
       - name: Publish kyverno
@@ -134,92 +134,92 @@ jobs:
           signature-repository: ghcr.io/${{ github.repository_owner }}/signatures
           main-path: ./cmd/reports-controller
 
-  generate-kyverno-provenance:
-    needs: publish-images
-    permissions:
-      id-token: write   # To sign the provenance.
-      packages: write   # To upload assets to release.
-      actions: read     # To read the workflow path.
-    # NOTE: The container generator workflow is not officially released as GA.
-    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v1.9.0
-    with:
-      image: ghcr.io/${{ github.repository_owner }}/kyverno
-      digest: "${{ needs.publish-images.outputs.kyverno-digest }}"
-      registry-username: ${{ github.actor }}
-    secrets:
-      registry-password: ${{ secrets.GITHUB_TOKEN }}
+  # generate-kyverno-provenance:
+  #   needs: publish-images
+  #   permissions:
+  #     id-token: write   # To sign the provenance.
+  #     packages: write   # To upload assets to release.
+  #     actions: read     # To read the workflow path.
+  #   # NOTE: The container generator workflow is not officially released as GA.
+  #   uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v1.9.0
+  #   with:
+  #     image: ghcr.io/${{ github.repository_owner }}/kyverno
+  #     digest: "${{ needs.publish-images.outputs.kyverno-digest }}"
+  #     registry-username: ${{ github.actor }}
+  #   secrets:
+  #     registry-password: ${{ secrets.GITHUB_TOKEN }}
 
-  generate-kyverno-init-provenance:
-    needs: publish-images
-    permissions:
-      id-token: write   # To sign the provenance.
-      packages: write   # To upload assets to release.
-      actions: read     # To read the workflow path.
-    # NOTE: The container generator workflow is not officially released as GA.
-    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v1.9.0
-    with:
-      image: ghcr.io/${{ github.repository_owner }}/kyvernopre
-      digest: "${{ needs.publish-images.outputs.kyverno-init-digest }}"
-      registry-username: ${{ github.actor }}
-    secrets:
-      registry-password: ${{ secrets.GITHUB_TOKEN }}
+  # generate-kyverno-init-provenance:
+  #   needs: publish-images
+  #   permissions:
+  #     id-token: write   # To sign the provenance.
+  #     packages: write   # To upload assets to release.
+  #     actions: read     # To read the workflow path.
+  #   # NOTE: The container generator workflow is not officially released as GA.
+  #   uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v1.9.0
+  #   with:
+  #     image: ghcr.io/${{ github.repository_owner }}/kyvernopre
+  #     digest: "${{ needs.publish-images.outputs.kyverno-init-digest }}"
+  #     registry-username: ${{ github.actor }}
+  #   secrets:
+  #     registry-password: ${{ secrets.GITHUB_TOKEN }}
 
-  generate-background-controller-provenance:
-    needs: publish-images
-    permissions:
-      id-token: write   # To sign the provenance.
-      packages: write   # To upload assets to release.
-      actions: read     # To read the workflow path.
-    # NOTE: The container generator workflow is not officially released as GA.
-    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v1.9.0
-    with:
-      image: ghcr.io/${{ github.repository_owner }}/background-controller
-      digest: "${{ needs.publish-images.outputs.background-controller-digest }}"
-      registry-username: ${{ github.actor }}
-    secrets:
-      registry-password: ${{ secrets.GITHUB_TOKEN }}
+  # generate-background-controller-provenance:
+  #   needs: publish-images
+  #   permissions:
+  #     id-token: write   # To sign the provenance.
+  #     packages: write   # To upload assets to release.
+  #     actions: read     # To read the workflow path.
+  #   # NOTE: The container generator workflow is not officially released as GA.
+  #   uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v1.9.0
+  #   with:
+  #     image: ghcr.io/${{ github.repository_owner }}/background-controller
+  #     digest: "${{ needs.publish-images.outputs.background-controller-digest }}"
+  #     registry-username: ${{ github.actor }}
+  #   secrets:
+  #     registry-password: ${{ secrets.GITHUB_TOKEN }}
 
-  generate-cleanup-controller-provenance:
-    needs: publish-images
-    permissions:
-      id-token: write   # To sign the provenance.
-      packages: write   # To upload assets to release.
-      actions: read     # To read the workflow path.
-    # NOTE: The container generator workflow is not officially released as GA.
-    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v1.9.0
-    with:
-      image: ghcr.io/${{ github.repository_owner }}/cleanup-controller
-      digest: "${{ needs.publish-images.outputs.cleanup-controller-digest }}"
-      registry-username: ${{ github.actor }}
-    secrets:
-      registry-password: ${{ secrets.GITHUB_TOKEN }}
+  # generate-cleanup-controller-provenance:
+  #   needs: publish-images
+  #   permissions:
+  #     id-token: write   # To sign the provenance.
+  #     packages: write   # To upload assets to release.
+  #     actions: read     # To read the workflow path.
+  #   # NOTE: The container generator workflow is not officially released as GA.
+  #   uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v1.9.0
+  #   with:
+  #     image: ghcr.io/${{ github.repository_owner }}/cleanup-controller
+  #     digest: "${{ needs.publish-images.outputs.cleanup-controller-digest }}"
+  #     registry-username: ${{ github.actor }}
+  #   secrets:
+  #     registry-password: ${{ secrets.GITHUB_TOKEN }}
 
-  generate-kyverno-cli-provenance:
-    needs: publish-images
-    permissions:
-      id-token: write   # To sign the provenance.
-      packages: write   # To upload assets to release.
-      actions: read     # To read the workflow path.
-    # NOTE: The container generator workflow is not officially released as GA.
-    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v1.9.0
-    with:
-      image: ghcr.io/${{ github.repository_owner }}/kyverno-cli
-      digest: "${{ needs.publish-images.outputs.cli-digest }}"
-      registry-username: ${{ github.actor }}
-    secrets:
-      registry-password: ${{ secrets.GITHUB_TOKEN }}
+  # generate-kyverno-cli-provenance:
+  #   needs: publish-images
+  #   permissions:
+  #     id-token: write   # To sign the provenance.
+  #     packages: write   # To upload assets to release.
+  #     actions: read     # To read the workflow path.
+  #   # NOTE: The container generator workflow is not officially released as GA.
+  #   uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v1.9.0
+  #   with:
+  #     image: ghcr.io/${{ github.repository_owner }}/kyverno-cli
+  #     digest: "${{ needs.publish-images.outputs.cli-digest }}"
+  #     registry-username: ${{ github.actor }}
+  #   secrets:
+  #     registry-password: ${{ secrets.GITHUB_TOKEN }}
 
-  generate-reports-controller-provenance:
-    needs: publish-images
-    permissions:
-      id-token: write   # To sign the provenance.
-      packages: write   # To upload assets to release.
-      actions: read     # To read the workflow path.
-    # NOTE: The container generator workflow is not officially released as GA.
-    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v1.9.0
-    with:
-      image: ghcr.io/${{ github.repository_owner }}/reports-controller
-      digest: "${{ needs.publish-images.outputs.reports-controller-digest }}"
-      registry-username: ${{ github.actor }}
-    secrets:
-      registry-password: ${{ secrets.GITHUB_TOKEN }}
+  # generate-reports-controller-provenance:
+  #   needs: publish-images
+  #   permissions:
+  #     id-token: write   # To sign the provenance.
+  #     packages: write   # To upload assets to release.
+  #     actions: read     # To read the workflow path.
+  #   # NOTE: The container generator workflow is not officially released as GA.
+  #   uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v1.9.0
+  #   with:
+  #     image: ghcr.io/${{ github.repository_owner }}/reports-controller
+  #     digest: "${{ needs.publish-images.outputs.reports-controller-digest }}"
+  #     registry-username: ${{ github.actor }}
+  #   secrets:
+  #     registry-password: ${{ secrets.GITHUB_TOKEN }}
