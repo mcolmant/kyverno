@@ -31,15 +31,15 @@ jobs:
         timeout-minutes: 10
       - name: ko build
         run: VERSION=${{ github.ref_name }} make ko-build-all
-      - name: Trivy Scan Image
-        uses: aquasecurity/trivy-action@6e7b7d1fd3e4fef0c5fa8cce1229c54b2c9bd0d8 # v0.24.0
-        with:
-          scan-type: 'fs'
-          ignore-unfixed: true
-          format: 'sarif'
-          output: 'trivy-results.sarif'
-          severity: 'CRITICAL,HIGH'
-        env:
-          # Trivy is returning TOOMANYREQUESTS
-          # See: https://github.com/aquasecurity/trivy-action/issues/389#issuecomment-2385416577
-          TRIVY_DB_REPOSITORY: 'public.ecr.aws/aquasecurity/trivy-db:2'
+      # - name: Trivy Scan Image
+      #   uses: aquasecurity/trivy-action@6e7b7d1fd3e4fef0c5fa8cce1229c54b2c9bd0d8 # v0.24.0
+      #   with:
+      #     scan-type: 'fs'
+      #     ignore-unfixed: true
+      #     format: 'sarif'
+      #     output: 'trivy-results.sarif'
+      #     severity: 'CRITICAL,HIGH'
+      #   env:
+      #     # Trivy is returning TOOMANYREQUESTS
+      #     # See: https://github.com/aquasecurity/trivy-action/issues/389#issuecomment-2385416577
+      #     TRIVY_DB_REPOSITORY: 'public.ecr.aws/aquasecurity/trivy-db:2'
