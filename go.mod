@@ -1,6 +1,6 @@
 module github.com/kyverno/kyverno
 
-go 1.22.8
+go 1.23.7
 
 require (
 	github.com/AdaLogics/go-fuzz-headers v0.0.0-20240806141605-e8a1dd7889d6
@@ -54,7 +54,7 @@ require (
 	github.com/sigstore/sigstore/pkg/signature/kms/gcp v1.8.9
 	github.com/sigstore/sigstore/pkg/signature/kms/hashivault v1.8.9
 	github.com/spf13/cobra v1.8.1
-	github.com/stretchr/testify v1.9.0
+	github.com/stretchr/testify v1.10.0
 	github.com/zach-klippenstein/goregen v0.0.0-20160303162051-795b5e3961ea
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.55.0
 	go.opentelemetry.io/otel v1.30.0
@@ -68,8 +68,8 @@ require (
 	go.opentelemetry.io/otel/trace v1.30.0
 	go.uber.org/automaxprocs v1.5.3
 	go.uber.org/multierr v1.11.0
-	golang.org/x/crypto v0.32.0
-	golang.org/x/text v0.21.0
+	golang.org/x/crypto v0.35.0
+	golang.org/x/text v0.22.0
 	gomodules.xyz/jsonpatch/v2 v2.4.0
 	google.golang.org/grpc v1.67.0
 	gopkg.in/inf.v0 v0.9.1
@@ -203,8 +203,8 @@ require (
 	github.com/go-errors/errors v1.5.1 // indirect
 	github.com/go-git/gcfg v1.5.1-0.20230307220236-3a3c6141e376 // indirect
 	github.com/go-ini/ini v1.67.0 // indirect
-	github.com/go-jose/go-jose/v3 v3.0.3 // indirect
-	github.com/go-jose/go-jose/v4 v4.0.4 // indirect
+	github.com/go-jose/go-jose/v3 v3.0.4 // indirect
+	github.com/go-jose/go-jose/v4 v4.0.5 // indirect
 	github.com/go-ldap/ldap/v3 v3.4.10 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
 	github.com/go-openapi/analysis v0.23.0 // indirect
@@ -220,8 +220,8 @@ require (
 	github.com/go-piv/piv-go v1.11.0 // indirect
 	github.com/gobwas/glob v0.2.3 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
-	github.com/golang-jwt/jwt/v4 v4.5.1 // indirect
-	github.com/golang-jwt/jwt/v5 v5.2.1 // indirect
+	github.com/golang-jwt/jwt/v4 v4.5.2 // indirect
+	github.com/golang-jwt/jwt/v5 v5.2.2 // indirect
 	github.com/golang/glog v1.2.4 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
 	github.com/golang/protobuf v1.5.4 // indirect
@@ -368,11 +368,11 @@ require (
 	go.uber.org/zap v1.27.0 // indirect
 	golang.org/x/exp v0.0.0-20240823005443-9b4947da3948
 	golang.org/x/mod v0.22.0 // indirect
-	golang.org/x/net v0.33.0 // indirect
+	golang.org/x/net v0.36.0 // indirect
 	golang.org/x/oauth2 v0.23.0 // indirect
-	golang.org/x/sync v0.10.0 // indirect
-	golang.org/x/sys v0.29.0 // indirect
-	golang.org/x/term v0.28.0 // indirect
+	golang.org/x/sync v0.11.0 // indirect
+	golang.org/x/sys v0.30.0 // indirect
+	golang.org/x/term v0.29.0 // indirect
 	golang.org/x/time v0.6.0 // indirect
 	google.golang.org/api v0.195.0 // indirect
 	google.golang.org/genproto v0.0.0-20240827150818-7e3bb234dfed // indirect
