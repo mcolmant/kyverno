@@ -5,10 +5,10 @@ description: Clone repo, unshallow, setup go, cache and install tools.
 inputs:
   unshallow:
     description: git unshallow
-    default: 'true'
+    default: "true"
   free-disk-space:
     description: free disk space
-    default: 'true'
+    default: "true"
 
 runs:
   using: composite
@@ -27,7 +27,7 @@ runs:
       if: ${{ inputs.unshallow == 'true' }}
       run: |
         git fetch --prune --unshallow
-    - uses: actions/setup-go@f111f3307d8850f501ac008e886eec1fd1932a34 # v5.3.0
+    - uses: actions/setup-go@0aaccfd150d50ccaeb58ebd88d36e91967a5f35b # v5.4.0
       with:
         go-version: ~1.23.8
     - shell: bash
